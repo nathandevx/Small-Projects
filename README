@@ -1,0 +1,24 @@
+Google Rank Predictor/
+- I built a web scrapper that grabs the first several results of a google search and gets various details about those
+websites, such as how many H1 tags there are or how many keywords the page has that relate to the search query.
+- I then used a machine learning classifier to predict the order in which sites would show up based on the search query.
+
+Java Oracle Database CRUD Application/
+- This was a school project.
+- The goal was to create a 2 table database using SQL and perform operations on that database using SQL.
+- I accounted for lots of edge cases such as the user entering various incorrect inputs.
+
+Machine Learning Tutorial/
+- I was learning the basics of machine learning from Data School on youtube.
+- I first explored the dataset, then I performed cross validation to further test my model, then I tuned the parameters
+of my model, finally I evaluated the models performance.
+
+Quizlet Search App/
+- This application is meant to be part of a django project.
+- The user would enter a question, then the application would search that question on google, tell google to only show
+quizlet.com results, then click the first research and use a text recognition tool to find the question that most
+resembles the user question, then it would grab the answer and present it to the user.
+
+do_i_have_class.py
+- Given a text file of classes and their start times, when ran, the program will continuously check if the user has
+class. The program can be modified to open a youtube link using selenium when a class is about to start.

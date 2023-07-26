@@ -1,0 +1,98 @@
+<!--EXTENDS FROM BASE-->
+{% extends 'base.html' %}
+<!--LOADS STATIC FILES-->
+{% load static %}
+
+
+<!--CUSTOM TITLE-->
+{% block title %}
+    <title>Quizlet Tool</title>
+{% endblock %}
+
+
+<!--CONTENT-->
+{% block content %}
+
+<!--INPUTTING INFORMATION-->
+<div class="container-fluid padding">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-row justify-content-center">
+            <div class="col-6">
+<!--                {{ form.site_name.errors }}-->
+                <label>Enter the question</label>
+                {{ form.question }}
+                <br>
+
+                <label>Check to remove stopwords   </label>
+                {{ form.stop_words }}
+                <p>Stop words include: the, at, and, it, etc</p>
+
+                <label>Scan how many links? (5 Max)</label>
+                {{ form.num_links }}
+                <br>
+
+                <label>Display how many results? (10 Max)</label>
+                {{ form.num_results }}
+                <br>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="container-fluid padding">
+    <div class="row text-center welcome">
+        <div class="col-12">
+
+            <!-- Displays something went wrong or "welcome"-->
+            {% if access %}
+                <h1>{{ access }}</h1>
+                <h4>The program may take up to 1 minute to run.</h4>
+            {% endif %}
+
+            <!--Are there results?-->
+            {% if results %}
+                {% if question %}
+                    <h4>Your Question: {{ question }}</h4>
+                    {% if stop_words %}
+                        <h4>Your Question without stopwords: {{ question_stopwords }}</h4>
+                    {% else %}
+                    {% endif %}
+                {% endif %}
+
+            <!--No results-->
+            {% else %}
+                <h4>{{ no_answers }}</h4>
+            {% endif %}
+
+
+            <!--Displays results table-->
+            {% if results %}
+            <!--RESULTS TABLE-->
+            <div class="table-responsive">
+                  <table class="table">
+                      <tr>
+                          <th>Answer</th>
+                          <th>Question</th>
+                          <th>Link</th>
+                          <th>Similar</th>
+                      </tr>
+                      {% for similarity_ratio, question_answer_links in results.items %}
+                      <tr>
+                          <td>{{ question_answer_links.1 }}</td>
+                          <td>{{ question_answer_links.0 }}</td>
+                          <td><a href="{{ question_answer_links.2 }}">{{ question_answer_links.2 }}</a></td>
+                          <td>{{ similarity_ratio }}</td>
+                      </tr>
+                      {% endfor %}
+                  </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
