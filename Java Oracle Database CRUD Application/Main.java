@@ -5,7 +5,7 @@ import java.util.*;
 class Database {
    public static void main(String[] args)throws Exception{
       DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@sabzevi2.homeip.net:1521:orcl", "csus", "student");
+//      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@sabzevi2.homeip.net:1521:orcl", "csus", "student");
       Statement st = con.createStatement();
       Statement st2 = con.createStatement();
       Scanner in = new Scanner(System.in);
